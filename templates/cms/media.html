@@ -127,6 +127,31 @@
 <script src="{% static "js/media.js" %}"></script>
 <script src="{% static "lib/videojs-event-tracking/videojs-event-tracking.min.js" %}"></script>
 <script>
+
+function log(name, data) {
+    var currentTime = new Date().toLocaleString();
+    const json = {
+        video_id: {
+            date: currentTime,
+            [name]: data,
+        },
+    };
+    console.log('log:', name, data, json, currentTime);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://videojs.free.beeceptor.com/my/api/path", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+        // Request finished. Do processing here.
+        console.log("sent");
+    };
+    xhr.onerror = function (error) {
+        // ** An error occurred during the transaction
+        console.log(error);
+    };
+    xhr.send(JSON.stringify(json));
+}
+
 (function() {
 
 const canvas = document.querySelector('.video-js.vjs-mediacms video');
