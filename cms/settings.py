@@ -159,7 +159,7 @@ FFMPEG_COMMAND = "ffmpeg"  # this is the path
 FFPROBE_COMMAND = "ffprobe"  # this is the path
 MP4HLS = "mp4hls"
 
-MASK_IPS_FOR_ACTIONS = True
+MASK_IPS_FOR_ACTIONS = False
 # how many seconds a process in running state without reporting progress is
 # considered as stale...unfortunately v9 seems to not include time
 # some times so raising this high
@@ -296,6 +296,7 @@ INSTALLED_APPS = [
     "djcelery_email",
     "ckeditor",
     "drf_yasg",
+    'django_user_agents',
 ]
 
 MIDDLEWARE = [
@@ -307,6 +308,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = "cms.urls"
