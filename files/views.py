@@ -65,12 +65,32 @@ from .serializers import (
 from .stop_words import STOP_WORDS
 from .tasks import save_user_action
 
+import json
+import boto3
+import os
+import requests
+
+firehose = boto3.client('firehose',
+                        aws_access_key_id = "AKIA2BSWVPNXVBZHEBVJ",
+                        aws_secret_access_key = "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", 
+                        region_name='eu-central-1')
+
+
+
 VALID_USER_ACTIONS = [action for action, name in USER_MEDIA_ACTIONS]
 
 
 def about(request):
     """About view"""
 
+    context = {}
+    return render(request, "cms/about.html", context)
+
+def analytics(request):
+    """About view"""
+    print('hello###########')
+    print(request.body)
+    print(request.text)
     context = {}
     return render(request, "cms/about.html", context)
 
